@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import scoring from '~/scoring'
 import Options from '~/Options'
 

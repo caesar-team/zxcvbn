@@ -5,9 +5,9 @@ name: Lint
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   run-linter:
@@ -21,11 +21,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 14.15.1
 
       - name: Install Node.js dependencies
         run: npm ci
 
       - name: Run linter
         run: npm run lint
-

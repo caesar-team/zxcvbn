@@ -1,14 +1,15 @@
 import { sorted, buildRankedDictionary } from '~/helper'
 import Options from '~/Options'
-import { ExtendedMatch, DictionaryNames } from '../types'
-import frequencyLists from '~/data/frequency_lists'
+import { ExtendedMatch, DictionaryNames, FrequencyLists } from '../types'
 
 const params = {
   userInputs: [] as string[],
 }
 
 class MatchDictionary {
-  rankedDictionaries: typeof frequencyLists
+  rankedDictionaries: FrequencyLists = {
+    userInputs: [],
+  }
 
   constructor({ userInputs = [] } = params) {
     this.rankedDictionaries = Options.rankedDictionaries

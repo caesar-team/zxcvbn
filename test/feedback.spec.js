@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import Feedback from '../src/Feedback'
 import translations from '../src/data/feedback/en'
 import Options from '~/Options'
