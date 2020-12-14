@@ -38,11 +38,7 @@ export interface Match {
   token: string
 }
 
-export interface ExtendedMatch {
-  pattern: Pattern
-  i: number
-  j: number
-  token: string
+export interface ExtendedMatch extends Match {
   matchedWord: string
   rank: number
   dictionaryName: DictionaryNames
