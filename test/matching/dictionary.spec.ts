@@ -7,18 +7,6 @@ import Options from '~/Options'
 Options.setOptions()
 
 describe('dictionary matching', () => {
-  describe('Default dictionary', () => {
-    const matchDictionary = new MatchDictionary()
-    const matches = matchDictionary.match('wow')
-    const patterns = ['wow']
-    const msg = 'default dictionaries'
-    const ijs = [[0, 2]]
-    checkMatches(msg, matches, 'dictionary', patterns, ijs, {
-      matchedWord: patterns,
-      rank: [322],
-      dictionaryName: ['us_tv_and_film'],
-    })
-  })
   describe('without user input', () => {
     const testDicts = {
       d1: ['motherboard', 'mother', 'board', 'abcd', 'cdef'],
