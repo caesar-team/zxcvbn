@@ -13,7 +13,6 @@ import {
   OptionsGraph,
 } from '~/types'
 import l33tTable from '~/data/l33tTable'
-import frequencyLists from '~/data/frequency_lists'
 import translationsEn from '~/data/feedback/en'
 import graphs from '~/data/adjacency_graphs'
 
@@ -22,10 +21,14 @@ class Options {
   l33tTable: OptionsL33tTable
 
   // @ts-ignore
-  dictionary: OptionsDictionary
+  dictionary: OptionsDictionary = {
+    userInputs: [],
+  }
 
   // @ts-ignore
-  rankedDictionaries: FrequencyLists
+  rankedDictionaries: FrequencyLists = {
+    userInputs: [],
+  }
 
   usedKeyboard: Keyboards = 'qwerty'
 
@@ -64,8 +67,6 @@ class Options {
 
     if (options.dictionary) {
       this.dictionary = options.dictionary
-    } else {
-      this.dictionary = frequencyLists
     }
 
     if (options.translations) {

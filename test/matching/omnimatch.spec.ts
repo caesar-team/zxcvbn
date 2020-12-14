@@ -13,8 +13,6 @@ describe('omnimatch matching', () => {
   const password = 'r0sebudmaelstrom11/20/91aaaa'
   const matches = omniMatch.match(password)
   const data = [
-    ['dictionary', [0, 6]],
-    ['dictionary', [7, 15]],
     ['date', [16, 23]],
     ['repeat', [24, 27]],
   ]
