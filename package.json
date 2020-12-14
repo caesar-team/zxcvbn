@@ -5,7 +5,7 @@
   "author": "Dan Wheeler",
   "license": "MIT",
   "main": "lib/main.js",
-  "repository": "dropbox/zxcvbn",
+  "repository": "caesarteam/zxcvbn-light",
   "files": [],
   "prettier": "./prettier.js",
   "scripts": {
