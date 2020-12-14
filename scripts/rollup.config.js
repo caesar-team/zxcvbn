@@ -7,6 +7,7 @@ import typescript from '@rollup/plugin-typescript'
 import pkg from '../package.json'
 
 let generateCounter = 0
+
 const generateConfig = (type) => {
   let typescriptOptions = {
     declaration: false,
@@ -18,6 +19,7 @@ const generateConfig = (type) => {
     entryFileNames: '[name].js',
     assetFileNames: '[name].js',
     sourcemap: true,
+    extend: true,
     exports: 'auto',
   }
   if (type === 'esm') {
