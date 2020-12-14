@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import MatchDictionary from '~/matching/Dictionary'
 import checkMatches from '../helper/checkMatches'
 import genpws from '../helper/genpws'
