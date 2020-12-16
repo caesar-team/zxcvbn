@@ -6,3 +6,13 @@ data-scripts
 demo
 test
 .secrets
+.github
+scripts
+scripts
+.babelrc
+.eslintignore
+.versionrc
+eslint-webpack-resolver.config.js
+jest.config.js
+prettier.js
+tsconfig.json

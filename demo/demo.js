@@ -1,5 +1,5 @@
 const testPasswords = `\
-zxcvbn
+zxcvbn_lightweight
 qwER43@!
 Tr0ub4dour&3
 correcthorsebatterystaple
@@ -10,7 +10,7 @@ p@$$word
 123456
 123456789
 11111111
-zxcvbnm,./
+zxcvbn_lightweightm,./
 love88
 angel08
 monkey13
@@ -78,7 +78,7 @@ verlineVANDERMARK
 eheuczkqyq
 rWibMFACxAUGZmxhVncy
 Ba9ZyWABu99[BK#6MBgbH88Tofv)vs$w\
-`;
+`
 
 const resultsTmpl = `\
 {{#results}}
@@ -109,7 +109,7 @@ const resultsTmpl = `\
 </table>
 {{& sequenceDisplay}}
 {{/results}}\
-`;
+`
 
 const guessTimesTmpl = `\
 <tr>
@@ -131,7 +131,7 @@ const guessTimesTmpl = `\
   <td>{{offlineFastHashing1e10PerSecond}}</td>
   <td> (offline attack, fast hash, many cores)</td>
 </tr>\
-`;
+`
 
 const feedbackTmpl = `\
 {{#warning}}
@@ -150,7 +150,7 @@ const feedbackTmpl = `\
   </td>
 </tr>
 {{/hasSuggestions}}\
-`;
+`
 
 const propsTmpl = `\
 <div class="match-sequence">
@@ -282,59 +282,61 @@ const propsTmpl = `\
 </table>
 {{/sequence}}
 </div>\
-`;
+`
 
-const roundToXDigits = (n, x) => Math.round(n * Math.pow(10, x)) / Math.pow(10, x);
+const roundToXDigits = (n, x) =>
+  Math.round(n * Math.pow(10, x)) / Math.pow(10, x)
 
-const roundLogs = function(r) {
-    r.guessesLog10 = roundToXDigits(r.guessesLog10, 5);
-    return Array.from(r.sequence).map((m) =>
-        (m.guessesLog10 = roundToXDigits(m.guessesLog10, 5)));
-};
+const roundLogs = function (r) {
+  r.guessesLog10 = roundToXDigits(r.guessesLog10, 5)
+  return Array.from(r.sequence).map(
+    (m) => (m.guessesLog10 = roundToXDigits(m.guessesLog10, 5)),
+  )
+}
 
-$(function() {
-    console.log(zxcvbn);
-    let r;
-    window.zxcvbn = zxcvbn;
-    const resultsLst = [];
-    for (let password of testPasswords.split('\n')) {
-        if (password) {
-          r = zxcvbn(password);
-            console.log(r);
-            roundLogs(r);
-            r.sequenceDisplay = Mustache.render(propsTmpl, r);
-            r.guessTimesDisplay = Mustache.render(guessTimesTmpl, r.crackTimesDisplay);
-            r.feedback.hasSuggestions = r.feedback.suggestions.length > 0;
-            r.feedbackDisplay = Mustache.render(feedbackTmpl, r.feedback);
-            resultsLst.push(r);
-        }
+$(function () {
+  console.log(zxcvbn_lightweight)
+  let r
+  window.zxcvbn_lightweight = zxcvbn_lightweight
+  const resultsLst = []
+  for (let password of testPasswords.split('\n')) {
+    if (password) {
+      r = zxcvbn_lightweight(password)
+      console.log(r)
+      roundLogs(r)
+      r.sequenceDisplay = Mustache.render(propsTmpl, r)
+      r.guessTimesDisplay = Mustache.render(guessTimesTmpl, r.crackTimesDisplay)
+      r.feedback.hasSuggestions = r.feedback.suggestions.length > 0
+      r.feedbackDisplay = Mustache.render(feedbackTmpl, r.feedback)
+      resultsLst.push(r)
     }
+  }
 
-    let rendered = Mustache.render(resultsTmpl, {
-        results: resultsLst,
-    });
-    $('#results').html(rendered);
+  let rendered = Mustache.render(resultsTmpl, {
+    results: resultsLst,
+  })
+  $('#results').html(rendered)
 
-    let lastQ = '';
-    const _listener = function() {
-        const current = $('#search-bar').val();
-        if (!current) {
-            $('#search-results').html('');
-            return;
-        }
-        if (current !== lastQ) {
-            lastQ = current;
-            r = zxcvbn(current);
-            roundLogs(r);
-            r.sequenceDisplay = Mustache.render(propsTmpl, r);
-            r.guessTimesDisplay = Mustache.render(guessTimesTmpl, r.crackTimesDisplay);
-            r.feedback.hasSuggestions = r.feedback.suggestions.length > 0;
-            r.feedbackDisplay = Mustache.render(feedbackTmpl, r.feedback);
-            const results = { results: [r] };
-            rendered = Mustache.render(resultsTmpl, results);
-            return $('#search-results').html(rendered);
-        }
-    };
+  let lastQ = ''
+  const _listener = function () {
+    const current = $('#search-bar').val()
+    if (!current) {
+      $('#search-results').html('')
+      return
+    }
+    if (current !== lastQ) {
+      lastQ = current
+      r = zxcvbn_lightweight(current)
+      roundLogs(r)
+      r.sequenceDisplay = Mustache.render(propsTmpl, r)
+      r.guessTimesDisplay = Mustache.render(guessTimesTmpl, r.crackTimesDisplay)
+      r.feedback.hasSuggestions = r.feedback.suggestions.length > 0
+      r.feedbackDisplay = Mustache.render(feedbackTmpl, r.feedback)
+      const results = { results: [r] }
+      rendered = Mustache.render(resultsTmpl, results)
+      return $('#search-results').html(rendered)
+    }
+  }
 
-    return setInterval(_listener, 100);
-});
+  return setInterval(_listener, 100)
+})

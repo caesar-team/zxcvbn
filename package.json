@@ -1,19 +1,18 @@
 {
-  "name": "@caesar-team/zxcvbn-lightweight",
-  "version": "4.5.3",
+  "name": "zxcvbn-lightweight",
+  "version": "4.4.3",
   "description": "realistic password strength estimation",
   "author": "Dan Wheeler",
   "license": "MIT",
-  "main": "lib/main.js",
+  "main": "src/index.ts",
   "repository": {
     "type": "git",
-    "url": "@caesar-team/zxcvbn-lightweight"
+    "url": "https://github.com/caesar-team/zxcvbn-lightweight"
   },
-  "files": [],
   "prettier": "./prettier.js",
   "scripts": {
-    "build": "rollup -c ./scripts/rollup.config.js",
-    "demo": "npm run build && npx copyfiles -f dist/main.browser.js demo && npx move-cli demo/main.browser.js demo/zxcvbn.js && http-server demo",
+    "build": "rm -rf dist && rollup -c && tsc --emitDeclarationOnly",
+    "demo": "npm run build && npx copyfiles -f dist/index.js demo && npx move-cli demo/index.js demo/zxcvbn.js && http-server demo",
     "lint": "eslint --ext .js --fix --cache .",
     "test": "jest",
     "release": "standard-version",
@@ -731,5 +730,8 @@
     "yallist": "^4.0.0",
     "yargs": "^16.2.0",
     "yargs-parser": "^20.2.4"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }

@@ -4,7 +4,7 @@ import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
 import del from 'rollup-plugin-delete'
 import typescript from '@rollup/plugin-typescript'
-import pkg from '../package.json'
+import pkg from './package.json'
 
 let generateCounter = 0
 
@@ -32,9 +32,9 @@ const generateConfig = (type) => {
     babelrc = false
   }
   if (type === 'iife') {
-    output.name = pkg.name
-    output.entryFileNames = '[name].browser.js'
-    output.assetFileNames = '[name].browser.js'
+    output.name = pkg.name.replace('-', '_')
+    output.entryFileNames = '[name].js'
+    output.assetFileNames = '[name].js'
   }
 
   const pluginsOnlyOnce = []
@@ -49,7 +49,7 @@ const generateConfig = (type) => {
   }
 
   return {
-    input: './src/main.ts',
+    input: './src/index.ts',
     output,
     plugins: [
       ...pluginsOnlyOnce,
@@ -57,7 +57,7 @@ const generateConfig = (type) => {
         entries: [
           {
             find: '~',
-            replacement: path.join(__dirname, '..', '/src'),
+            replacement: path.join(__dirname, '/src'),
           },
         ],
       }),

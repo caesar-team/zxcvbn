@@ -1,10 +1,10 @@
-import zxcvbn from '~/main'
+import zxcvbn from '~/index'
 import translations from '~/data/feedback/en'
 import Options from '~/Options'
 
 Options.setOptions()
 
-describe('main', () => {
+describe('index', () => {
   it('should check with userInputs', () => {
     const result = zxcvbn('test', ['test', 12, true, []])
     delete result.calcTime
