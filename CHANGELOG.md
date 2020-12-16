@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.4.4](https://github.com/caesar-team/zxcvbn-lightweight/compare/v4.5.2...v4.4.4) (2020-12-16)
+
 ### [4.5.2](///compare/v4.5.1...v4.5.2) (2020-12-14)
 
 ### [4.5.1](///compare/v4.5.0...v4.5.1) (2020-12-14)
