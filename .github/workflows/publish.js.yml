@@ -1,22 +1,20 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Run Tests
+name: Publish
 
 on:
   push:
     branches: [master]
-  pull_request:
-    branches: [master]
   workflow_run:
-    workflows: ['Run Linter']
+    workflows: ['Run Tests']
     branches: [master]
     types:
       - completed
 
 jobs:
   build:
-    name: Run tests
+    name: Publish to NPM registry
     runs-on: ubuntu-latest
 
     strategy:
@@ -32,11 +30,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install Node.js dependencies
-        run: npm ci
+      - name: Publish
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
 
-      - name: Build source
-        run: npm run build
-
-      - name: Run tests
-        run: npm run test
+      - if: steps.publish.outputs.type != 'none'
+        run: |
+          echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
