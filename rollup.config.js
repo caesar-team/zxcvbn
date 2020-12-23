@@ -4,7 +4,6 @@ import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
 import del from 'rollup-plugin-delete'
 import typescript from '@rollup/plugin-typescript'
-import pkg from './package.json'
 
 let generateCounter = 0
 
@@ -32,7 +31,7 @@ const generateConfig = (type) => {
     babelrc = false
   }
   if (type === 'iife') {
-    output.name = pkg.name.replaceAll(`${pkg.scope}/`, '').replaceAll('-', '_')
+    output.name = 'zxcvbn_lightweight'
     output.entryFileNames = '[name].js'
     output.assetFileNames = '[name].js'
   }
