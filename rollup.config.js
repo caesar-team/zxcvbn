@@ -32,7 +32,7 @@ const generateConfig = (type) => {
     babelrc = false
   }
   if (type === 'iife') {
-    output.name = pkg.name.replace('-', '_')
+    output.name = pkg.name.replaceAll(`${pkg.scope}/`, '').replaceAll('-', '_')
     output.entryFileNames = '[name].js'
     output.assetFileNames = '[name].js'
   }
