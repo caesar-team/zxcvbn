@@ -1,7 +1,7 @@
 {
   "name": "@caesar-team/zxcvbn-lightweight",
   "scope": "@caesar-team",
-  "version": "4.5.1",
+  "version": "4.5.2",
   "description": "realistic password strength estimation",
   "author": "Dan Wheeler",
   "license": "MIT",
@@ -16,8 +16,11 @@
     "demo": "npm run build && npx copyfiles -f dist/index.js demo && npx move-cli demo/index.js demo/zxcvbn.js && http-server demo",
     "lint": "eslint --ext .js --fix --cache .",
     "test": "jest",
-    "release": "npm run build && standard-version",
-    "publish": "npm run build && npm publish --access public",
+    "release:build": "npm run build && standard-version",
+    "release:major": "release:build",
+    "release:path": "npm run release:build --release-as path",
+    "release:minor": "npm run release:build --release-as minor",
+    "publish": "npm publish --access public",
     "release:dry": "standard-version --dry-run"
   },
   "devDependencies": {
